@@ -34,11 +34,26 @@ function addToOrder(itemName) {
   orderItem.textContent = itemName;
   orderList.appendChild(orderItem);
 
+  orderItem.onclick = () => removeOrderItem(orderItem);
+
   // Calculate and update the total price
   const currentTotal = parseFloat(orderTotalElem.textContent);
   const itemPrice = 38; // Assuming each item costs R38 (you can customize this)
   const newTotal = currentTotal + itemPrice;
   orderTotalElem.textContent = newTotal.toFixed(2);
+}
+
+function removeOrderItem(item) {
+    const orderTotalElem = document.getElementById('order-total');
+  
+    // Calculate and update the total price
+    const currentTotal = parseFloat(orderTotalElem.textContent);
+    const itemPrice = 38; // Assuming each item costs R38 (you can customize this)
+    const newTotal = currentTotal - itemPrice;
+
+    item.remove();
+    
+    orderTotalElem.textContent = newTotal.toFixed(2);
 }
 
 // Function to initialize the menu system
